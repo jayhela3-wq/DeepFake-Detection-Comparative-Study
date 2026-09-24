@@ -49,3 +49,32 @@ def read_frames(job, dataset_dir, frames_per_video=10, resize=None, jpeg_quality
     cap.release()
 
     return output
+
+def build_zip(split, real_list, fake_list, output_dir, dataset_dir, frames_per_video=10, resize=None, jpeg_quality=95, workers=8):
+    jobs = (
+        [(video, "real") for video in real_list] +
+        [(video, "fake") for video in fake_list]
+    )
+
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    zip_path = output_dir/f"{split}.zip"
+
+    frame_count = 0
+
+    with(zipfile.ZipFile(zip_path, "w", zipfile.ZIP_STORED) as zip_file, ThreadPoolExecutor(max_workers=workers) as executor):
+        results = executor.map(lambda job: read_frames(job, dataset_dir, frames_per_video, resize, jpeg_quality), jobs)
+
+        for frames in tqdm(results, total=len(jobs), desc=split):
+            for name, data in frames:
+                zip_file.writestr(name, data)
+                frame_count += 1
+
+
+    size_gb = zip_path.stat().st_size/1e9
+
+    print(
+        f"{split}: {frame_count} frames ->"
+        f"{zip_path.name} ({size_gb:.2f} GB)"
+    )
