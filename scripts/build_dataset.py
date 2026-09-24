@@ -9,7 +9,7 @@ real_videos = find_videos(ORIGINAL_DIR)
 fake_videos = []
 
 for folder in FAKE_DIRS:
-    fake_videos.append(find_videos(folder))
+    fake_videos.extend(find_videos(folder))
 
 print("Real videos: ", len(real_videos))
 print("Fake Videos: ", len(fake_videos))
