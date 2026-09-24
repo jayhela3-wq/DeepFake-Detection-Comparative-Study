@@ -1,8 +1,7 @@
-from pathlib import Path
 from preprocessing.find_videos import find_videos
 from preprocessing.split_videos import split_videos
 from preprocessing.extract_frames import build_zip
-from preprocessing.config import DATASET_DIR, ORIGINAL_DIR, FAKE_DIRS, SEED, FRAMES_PER_VIDEO, TRAIN_RATIO, VAL_RATIO, TEST_RATIO, OUTPUT_DIR, JPEG_QUALITY, WORKERS, RESIZE
+from preprocessing.config import DATASET_DIR, ORIGINAL_DIR, FAKE_DIRS, SEED, FRAMES_PER_VIDEO, TRAIN_RATIO, VAL_RATIO, OUTPUT_DIR, JPEG_QUALITY, WORKERS, RESIZE
 
 real_videos = find_videos(ORIGINAL_DIR)
 
