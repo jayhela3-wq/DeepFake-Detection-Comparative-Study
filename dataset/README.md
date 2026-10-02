@@ -34,6 +34,7 @@ if the split changes.
 
 **How to use it:**
     from preprocessing.manifest import load_manifest
+    
     paths, labels = load_manifest("train")
 
 **Note:** the paths only work on Kaggle with the ProjectDetectionFrames
