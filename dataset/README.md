@@ -29,7 +29,7 @@ Counts: train 49,000 / val 10,500 / test 10,500 (about 6 fake for every 1 real).
 file takes a second, and all three of us train and test on exactly the same images.
 
 **When it's used:** every time you load data for training or evaluation.
-It is built once (see experiments/01_build_manifest.ipynb) and only rebuilt
+It is built once (see experiments/manifest.ipynb) and only rebuilt
 if the split changes.
 
 **How to use it:**
