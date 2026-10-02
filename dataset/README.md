@@ -33,6 +33,7 @@ It is built once (see experiments/manifest.ipynb) and only rebuilt
 if the split changes.
 
 **How to use it:**
+    
     from preprocessing.manifest import load_manifest
     
     paths, labels = load_manifest("train")
