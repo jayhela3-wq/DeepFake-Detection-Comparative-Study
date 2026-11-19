@@ -1,31 +1,32 @@
 from pathlib import Path
 
+
 DATASET_DIR = Path("/kaggle/input/datasets/xdxd003/ff-c23/FaceForensics++_C23")
-
-ORIGINAL_DIR = DATASET_DIR/"original"
-
-FAKE_DIRS = [
-    DATASET_DIR/"DeepFakeDetection",
-    DATASET_DIR/"Deepfakes",
-    DATASET_DIR/"Face2Face",
-    DATASET_DIR/"FaceShifter",
-    DATASET_DIR/"FaceSwap",
-    DATASET_DIR/"NeuralTextures"
-
+ORIGINAL_DIR = DATASET_DIR / "original"
+FAKE_DIR_NAMES = [
+    "DeepFakeDetection", "Deepfakes", "Face2Face",
+    "FaceShifter", "FaceSwap", "NeuralTextures",
 ]
+VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv"}
 
+SPLITS_DIR = Path("splits")
+OUTPUT_DIR = Path("/kaggle/working/face_crops")
+SPLIT_ASSIGNMENT_PATH = Path("split_assignment.csv")
 
+SPLIT_NAMES = ("train", "val", "test")
+SPLIT_RATIOS = (0.70, 0.15, 0.15)
 SEED = 42
+
 FRAMES_PER_VIDEO = 10
-
-TRAIN_RATIO = 0.70
-VAL_RATIO = 0.15
-
-TEST_RATIO = 0.15
-
-OUTPUT_DIR = Path("/kaggle/working/deepfake_frames")
-
+CROP_SIZE = 299
+FACE_MARGIN = 0.30
 JPEG_QUALITY = 95
-WORKERS = 8
 
-RESIZE = None
+
+READ_WORKERS = 4
+VIDEO_BATCH_SIZE = 8
+
+
+MIN_FACE_SIZE = 20
+DETECTOR_THRESHOLDS = (0.6, 0.7, 0.7)
+KEEP_ALL_FACES = True
